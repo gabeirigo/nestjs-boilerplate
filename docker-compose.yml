@@ -26,9 +26,9 @@ services:
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgres://userdev:passworddev@postgres:5432/devdb
-      - AWS_REGION=sa-east-1
-      - AWS_COGNITO_USER_POOL_ID=sa-east-1_G1FzvzB8u
-      - JWT_SECRET=1234
+      - AWS_REGION=
+      - AWS_COGNITO_USER_POOL_ID=
+      - JWT_SECRET=
 
 volumes:
   pgdata:
