@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: nestjs-postgres
+    environment:
+      POSTGRES_USER: userdev
+      POSTGRES_PASSWORD: passworddev
+      POSTGRES_DB: devdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  nest-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3333:3333"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://userdev:passworddev@postgres:5432/devdb
+      - AWS_REGION=sa-east-1
+      - AWS_COGNITO_USER_POOL_ID=sa-east-1_G1FzvzB8u
+      - JWT_SECRET=1234
+
+volumes:
+  pgdata:
